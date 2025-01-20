@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StepDefATM {
 
+
     ATM atm;
     Bank bank;
     boolean validLogin;
@@ -39,7 +40,7 @@ public class StepDefATM {
         assertTrue(validLogin);
     }
 
-    @Then("I cannot login")
+    @Then("I should not able to login")
     public void i_cannot_login() {
         assertFalse(validLogin);
     }
@@ -67,7 +68,12 @@ public class StepDefATM {
     @Then("customer id {int} account balance is {float}")
     public void customer_id_account_balance_is(int id, double balance) {
         assertEquals(balance,
-                     bank.getCustomer(id).getAccount().getBalance());
+                bank.getCustomer(id).getAccount().getBalance());
+    }
+
+    @When("I deposit {float} to ATM")
+    public void i_deposit_from_atm(double amount) {
+        atm.deposit(amount);
     }
 
 }
